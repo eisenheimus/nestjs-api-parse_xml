@@ -1,0 +1,13 @@
+version: '3.6'
+
+services:
+  db:
+    image: onjin/alpine-postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: qwe123
+      POSTGRES_DB: nest_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
