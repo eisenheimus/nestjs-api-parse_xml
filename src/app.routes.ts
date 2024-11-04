@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RouterModule } from '@nestjs/core';
 import { ExcangeRateModule } from './exchangeRate/exchangeRate.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -11,6 +12,10 @@ import { ExcangeRateModule } from './exchangeRate/exchangeRate.module';
       {
         path: 'excange',
         module: ExcangeRateModule,
+      },
+      {
+        path: 'auth',
+        module: AuthModule,
       }
     ])
   ],

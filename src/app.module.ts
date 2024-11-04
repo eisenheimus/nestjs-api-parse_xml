@@ -1,3 +1,4 @@
+import { UsersModule } from './users/users.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,11 +9,13 @@ import { AuthModule } from './auth/auth.module';
 import { AppRoutesModule } from './app.routes';
 import dbConfig from "./configs/db"
 import { ExcangeRateModule } from './exchangeRate/exchangeRate.module';
-import { Transcoder } from './transcoder/transcoder.module';
+import { TranscoderModule } from './transcoder/transcoder.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 
 @Module({
   imports: [
+    UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env'
@@ -26,10 +29,11 @@ import { Transcoder } from './transcoder/transcoder.module';
     AuthModule,
     AppRoutesModule,
     ExcangeRateModule,
-    Transcoder
+    TranscoderModule,
+    ScheduleModule.forRoot()
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
 

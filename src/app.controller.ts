@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CacheKey } from '@nestjs/cache-manager';
+import { JwtAuthGuard } from './auth/jwt.guard';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  // @CacheKey('main-get')
+  @UseGuards(JwtAuthGuard)
   @Get()
   getHello(): string {
     return this.appService.getHello();
