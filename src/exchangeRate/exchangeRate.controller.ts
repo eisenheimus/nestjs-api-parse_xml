@@ -19,12 +19,14 @@ export class ExcangeRateController {
     }
 
     @HttpCode(201)
+    @UseGuards(JwtAuthGuard)
     @Post('update-all')
     updateRates(){
         return this.service.updateRates();
     }
 
     @HttpCode(200)
+    @UseGuards(JwtAuthGuard)
     @CacheKey('one-rate')
     @Get('one/:rate')
     async getOneRateByCharCode(@Param('rate') rate: string){
@@ -33,6 +35,7 @@ export class ExcangeRateController {
     }
 
     @HttpCode(200)
+    @UseGuards(JwtAuthGuard)
     @CacheKey('all-rate')
     @Get('all/:rate')
     async getRatesByCharCode(@Param('rate') rate: string){
